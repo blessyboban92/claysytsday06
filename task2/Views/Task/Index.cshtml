@@ -1,0 +1,78 @@
+﻿@model IEnumerable<task2.Models.Task>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Registered clients</h2>
+@if (TempData["InfoMessage"] != null)
+{
+    <div class="alert alert-info">
+        <strong>Information :</strong>  @TempData["InfoMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="float: right;">
+            <span>&times;</span>
+        </button>
+    </div>
+}
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong>Success !</strong>  @TempData["SuccessMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="float: right;">
+            <span>&times;</span>
+        </button>
+    </div>
+}
+<p>
+    @Html.ActionLink("Register Now", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.firstname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lastname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.photo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.biodata)
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lastname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.photo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.biodata)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.regid }, new { @class = "btn btn-primary" }) &nbsp;&nbsp;&nbsp;
+                @Html.ActionLink("Details", "Details", new { id = item.regid }, new { @class = "btn btn-success" }) &nbsp;&nbsp;&nbsp;
+                @Html.ActionLink("Delete", "Delete", new { id = item.regid }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
